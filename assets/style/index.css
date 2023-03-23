@@ -1,0 +1,25 @@
+@import url(./reset.css);
+
+
+.container {
+    width: min(100% - 30px, 1080px);
+    margin-inline: auto;
+}
+
+:root {
+    --app-dark-bg: #1a1d28;
+    --app-green: #33ab4e;
+    --app-purple: #833cff;
+    --app-orange: #ff833c;
+    --app-red: #ff3c57;
+    --app-red-hover: #ff2846;
+    --app-orange-text: #ff8e1c;
+    --app-light-gray: #f9f9f9;
+    --app-white: #fff;
+}
+
+
+body {
+    background-color: var(--app-dark-bg);
+    font-family: 'Inter', sans-serif;
+}
