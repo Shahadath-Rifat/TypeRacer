@@ -15,6 +15,24 @@
         <script src="./assets/script/index.js" defer></script>
     </head>
     <body>
-       
+      <div class="container">
+        <h1>TypeRacer</h1>
+      <div id="game-container">
+        <p id="prompt"></p>
+        <input type="text" id="input" placeholder="Type the word and hit Enter...">
+        <div id="status">
+          <span id="points">0</span> points - <span id="time-left">99</span> seconds left
+        </div>
+        
+        <button id="start-button">Start</button>
+        <audio id="background-music" loop>
+          <source src="./assets/audio/Sneaky-Snitch.mp3" type="audio/mp3">
+        </audio>
+        <audio id="correct-sound">
+          <source src="./assets/audio/tadaa-47995.mp3" type="audio/mpeg">
+          <source src="correct.ogg" type="audio/ogg">
+        </audio>
+      </div>
+    </div>
     </body>
 </html> 
