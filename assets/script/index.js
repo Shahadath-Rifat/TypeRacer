@@ -52,11 +52,12 @@ function displayTypingResult(typingSpeed) {
   startButton.disabled = false;
   backgroundMusic.pause();
   wordsLeft = [];
-  const percentage = Math.round(points / words.length * 100);
-  const score = new Score(new Date(), points, percentage);
-  const resultMessage = `Congratulations! You scored ${points} points (${percentage}%), 
-    typing at a speed of ${typingSpeed} words per minute!`;
-  promptText.innerHTML = resultMessage;
+  const resultSection = document.querySelector('.result-section');
+  const typingSpeedElement = resultSection.querySelector('.typing-speed');
+  const scoreElement = resultSection.querySelector('.score');
+  typingSpeedElement.textContent = typingSpeed;
+  scoreElement.textContent = points;
+  resultSection.classList.add('show');
   input.value = "";
   points = 0;
   timeLeft = 99;
@@ -155,3 +156,43 @@ function handleKeyup(event) {
     }
   }
 }
+
+function hideButton() {
+  var startButton = document.getElementById("start-button");
+  startButton.style.display = "none"; // hide the button
+  setTimeout(function() {
+    startButton.style.display = "block"; // show the button again after 99 seconds
+  }, 99000); // 99 seconds * 1000 (milliseconds per second)
+}
+
+var button = document.getElementById("start-button");
+button.addEventListener("click", hideButton);
+
+
+// A function that resets all the variables to their initial values and hides the result section
+/*function resetGame() {
+  resultSection.classList.remove('show');
+  textContent.remove('typingSpeed');
+  textContent.remove('points') 
+}
+
+startButton.addEventListener('click', () => {
+  if (startButton.textContent === 'Start') {
+    resetGame();
+    backgroundMusic.currentTime = 0;
+    backgroundMusic.play();
+    timerIntervalId = setInterval(() => {
+      timeLeft--;
+      timeLeftElement.textContent = timeLeft;
+      if (timeLeft === 0) {
+        const typingSpeed = calculateTypingSpeed(startTime, new Date());
+        displayTypingResult(typingSpeed);
+      }
+    }, 1000);
+    const promptWord = getRandomWord();
+    promptText.textContent = promptWord;
+    input.focus();
+  } else {
+    resetGame();
+  }
+});*/

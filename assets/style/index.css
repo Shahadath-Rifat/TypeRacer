@@ -29,7 +29,7 @@ body {
 
 h1 {
   font-size: 62px;
-  margin: 0;
+  margin: 5px;
   padding: 20px;
   text-align: center;
   color: #fff;
@@ -50,28 +50,34 @@ h1 {
   width: 540px;
   height: 400px;
   margin: 0 auto;
-  background: linear-gradient(to bottom right, #be215c, #f04a69);
-  padding: 50px;
-  border-radius: 5px;
+  background: linear-gradient(to left, #3498DB, #be215c, #f04a69);
+  padding: 20px 50px 20px 50px;
+  border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  border: 3px solid #23167d;
-  border-style: solid double;
-  animation: bounce 0.5s infinite alternate;
+  border: 1px solid #bfbfc4;
+  
 }
 
-@keyframes bounce {
+/*@keyframes bounce {
   0% {
     transform: translateY(0);
   }
   100% {
     transform: translateY(-10px);
   }
-}
+  animation: bounce 0.5s infinite alternate;
+}*/
    
 #prompt {
-  font-size: 30px;
-  display: block;    
+  font-size: 29px;
+  display: block;
+  height: 45px;   
+  width: 200px;
+  color: var(--app-white);
 }
+
+
+
 
 input[type="text"] {
   font-size: 20px;
@@ -90,13 +96,13 @@ input[type="text"] {
   height: 45px;
   border-radius: 50px;
   font-size: 20px;
-  color: rgb(17, 5, 5);
+  color: var(--app-white);
   font-weight: 600;
   box-shadow: rgba(0, 0, 0, 0.2) 0px 26px 30px -10px;
   transition: all 0.25s ease-in-out;
   cursor: pointer;
-  background-color:#21abbe;
-  margin-top: 40px;  
+  background-color: #4589b7;
+  margin-top: 25px;  
 }
  
 #start-button:hover {
@@ -106,8 +112,9 @@ input[type="text"] {
 }
 
 #status {
-  font-size: 24px;
+  font-size: 23px;
   margin-top: 20px;
+  color: var(--app-white);
 }
   
 audio {
@@ -129,7 +136,49 @@ audio {
 .correct {
   animation-name: correct-animation;
   animation-duration: 2.2s;
-  
 }
+
+
+
+.result-section {
+  display: none;
+  text-align: center;
+  margin-top: 5px;
+}
+
+.result-section h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+  color: var(--app-white);
+}
+
+.result-section p {
+  font-size: 22px;
+  margin-bottom: 5px;
+  color: var(--app-white);
+}
+
+.result-section .typing-speed {
+  font-weight: bold;
+}
+
+.result-section .score {
+  font-weight: bold;
+}
+
+.result-section.show {
+  display: block;
+  animation: fade-in 0.5s ease-out;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 
 
