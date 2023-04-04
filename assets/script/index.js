@@ -52,12 +52,18 @@ function displayTypingResult(typingSpeed) {
   startButton.disabled = false;
   backgroundMusic.pause();
   wordsLeft = [];
-  const resultSection = document.querySelector('.result-section');
-  const typingSpeedElement = resultSection.querySelector('.typing-speed');
-  const scoreElement = resultSection.querySelector('.score');
-  typingSpeedElement.textContent = typingSpeed;
-  scoreElement.textContent = points;
-  resultSection.classList.add('show');
+  const percentage = Math.round(points / words.length * 100);
+  const score = new Score(new Date(), points, percentage);
+  const resultMessage = `Congrats! You scored ${points} points at ${percentage}% .`;
+  promptText.style.fontSize = "24px";
+  promptText.textContent = resultMessage;
+  // create new score object
+  let scoresArray = JSON.parse(localStorage.getItem('scores')) || []; // retrieve scores from localStorage (or create a new array if empty)
+  scoresArray.push(score); // add new score to array
+  scoresArray.sort((a, b) => (a.hits < b.hits) ? 1 : -1); // sort array by hits
+  scoresArray.splice(9); // keep only the top 9 scores
+  localStorage.setItem('scores', JSON.stringify(scoresArray)); // store updated array in localStorage
+  updateScoreboard(); // call the function to update the scoreboard
   input.value = "";
   points = 0;
   timeLeft = 99;
@@ -103,30 +109,6 @@ function handleKeyup(event) {
 // Listen for the "Start" button click event to start the game
 startButton.addEventListener("click", startGame);
 
-// Define the Score class
-class Score {
-  #date;
-  #hits;
-  #percentage;
-  
-  constructor(date, hits, percentage) {
-    this.#date = date;
-    this.#hits = hits;
-    this.#percentage = percentage;
-  }
-  
-  get date() {
-    return this.#date;
-  }
-  
-  get hits() {
-    return this.#hits;
-  }
-  
-  get percentage() {
-    return this.#percentage;
-  }
-}
 
 const correctSound = document.getElementById("correct-sound");
 correctSound.currentTime = 0;
@@ -169,30 +151,38 @@ var button = document.getElementById("start-button");
 button.addEventListener("click", hideButton);
 
 
-// A function that resets all the variables to their initial values and hides the result section
-/*function resetGame() {
-  resultSection.classList.remove('show');
-  textContent.remove('typingSpeed');
-  textContent.remove('points') 
+// New Updates starts here
+
+class Score {
+  constructor(date, hits, percentage) {
+    if (!(date instanceof Date)) {
+      throw new TypeError('date must be a Date object');
+    }
+    this.date = date;
+    this.hits = hits;
+    this.percentage = percentage;
+  }
 }
 
-startButton.addEventListener('click', () => {
-  if (startButton.textContent === 'Start') {
-    resetGame();
-    backgroundMusic.currentTime = 0;
-    backgroundMusic.play();
-    timerIntervalId = setInterval(() => {
-      timeLeft--;
-      timeLeftElement.textContent = timeLeft;
-      if (timeLeft === 0) {
-        const typingSpeed = calculateTypingSpeed(startTime, new Date());
-        displayTypingResult(typingSpeed);
-      }
-    }, 1000);
-    const promptWord = getRandomWord();
-    promptText.textContent = promptWord;
-    input.focus();
-  } else {
-    resetGame();
+
+function updateScoreboard() {
+  const scoresArray = JSON.parse(localStorage.getItem('scores')) || []; // retrieve scores from localStorage (or create a new array if empty)
+  scoresArray.sort((a, b) => (a.hits < b.hits) ? 1 : -1); // sort array by hits
+  scoresArray.splice(9); // keep only the top 9 scores
+  const scoreboardElement = document.getElementById('scoreboard');
+  scoreboardElement.innerHTML = "<h2>High Scores</h2>";
+  const orderedList = document.createElement("ol");
+  for (let score of scoresArray) {
+    const date = (score.date instanceof Date) ? score.date.toLocaleDateString() : "";
+    const hits = score.hits;
+    const percentage = score.percentage + "%";
+    const listItem = document.createElement("li");
+    listItem.textContent = `${date} - ${hits} hits (${percentage})`;
+    listItem.style.fontSize = "20px";
+    listItem.style.marginBottom = "9px";
+    orderedList.style.marginTop = "9px";
+    orderedList.appendChild(listItem);
   }
-});*/
+  scoreboardElement.appendChild(orderedList);
+}
+

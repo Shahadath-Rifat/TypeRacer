@@ -15,20 +15,15 @@
         <script src="./assets/script/index.js" defer></script>
     </head>
     <body>
+      <main>
       <div class="container">
         <h1 class="particle-animation">TypeRacer</h1>
       <div id="game-container">
-        <div class="result-section">
-          <h2>Results</h2>
-          <p>Your typing speed is: <span class="typing-speed">0</span> words per minute</p>
-          <p>You scored: <span class="score">0</span> points</p>
-        </div>
         <p id="prompt"></p>
         <input type="text" id="input" placeholder="Type the word and hit Enter...">
         <div id="status">
           <span id="points">0</span> points - <span id="time-left">99</span> seconds left
         </div>
-        
         <button id="start-button">Start</button>
         <audio id="background-music" loop>
           <source src="./assets/audio/synthwave-cyberpunk-retrowave.mp3" type="audio/mp3">
@@ -38,6 +33,10 @@
           <source src="correct.ogg" type="audio/ogg">
         </audio>
       </div>
+      <aside id="scoreboard">
+        <h3>High Scores</h3>
+      </aside>
     </div>
+    </main>
     </body>
 </html> 

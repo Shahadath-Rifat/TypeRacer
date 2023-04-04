@@ -3,7 +3,7 @@
 
 .container {
   width: min(100% - 30px, 1080px);
-  margin-inline: auto;
+  margin: auto;
 }
 
 :root {
@@ -17,7 +17,6 @@
   --app-light-gray: #f9f9f9;
   --app-white: #fff;   
 }
-
 
 body {
   font-family: Arial, sans-serif;
@@ -47,40 +46,27 @@ h1 {
 }
 
 #game-container {
-  width: 540px;
+  width: 470px;
   height: 400px;
   margin: 0 auto;
   background: linear-gradient(to left, #3498DB, #be215c, #f04a69);
-  padding: 20px 50px 20px 50px;
+  padding: 15px 50px 15px 50px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border: 1px solid #bfbfc4;
-  
 }
-
-/*@keyframes bounce {
-  0% {
-    transform: translateY(0);
-  }
-  100% {
-    transform: translateY(-10px);
-  }
-  animation: bounce 0.5s infinite alternate;
-}*/
    
 #prompt {
-  font-size: 29px;
+  font-size: 33px;
   display: block;
-  height: 45px;   
-  width: 200px;
+  height: 65px;   
+  width: 300px;
   color: var(--app-white);
+  margin-top: 8px;
 }
 
-
-
-
 input[type="text"] {
-  font-size: 20px;
+  font-size: 22px;
   width: 300px;
   padding: 10px;
   border-radius: 3px;
@@ -88,9 +74,9 @@ input[type="text"] {
   margin-top: 15px;
   background-color: #152f55;   
   color: #f9f9f9;
+  margin-bottom: 10px;
 }
 
-  
 #start-button {
   width: 125px;
   height: 45px;
@@ -112,9 +98,10 @@ input[type="text"] {
 }
 
 #status {
-  font-size: 23px;
+  font-size: 25px;
   margin-top: 20px;
   color: var(--app-white);
+  margin-bottom: 25px;
 }
   
 audio {
@@ -138,47 +125,35 @@ audio {
   animation-duration: 2.2s;
 }
 
+/* Adding new changes for the high score*/
 
 
-.result-section {
-  display: none;
-  text-align: center;
+#scoreboard {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  max-height: 100vh;
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 300px;
+  height: 100%;
+  color: white;
+  padding: 20px;
+  box-shadow: -2px 0px 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(5px);
+  background-color:transparent;
+}
+
+#scoreboard h3 {
   margin-top: 5px;
+  font-size: 27px;
+  margin-bottom: 10px;
+
 }
 
-.result-section h2 {
-  font-size: 28px;
-  margin-bottom: 9px;
-  color: var(--app-white);
-}
-
-.result-section p {
-  font-size: 22px;
-  margin-bottom: 5px;
-  color: var(--app-white);
-}
-
-.result-section .typing-speed {
-  font-weight: bold;
-}
-
-.result-section .score {
-  font-weight: bold;
-}
-
-.result-section.show {
-  display: block;
-  animation: fade-in 0.5s ease-out;
-}
-
-@keyframes fade-in {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
 
 
 
